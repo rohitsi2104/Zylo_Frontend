@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Post, Comment } from "../types";
+import { Post } from "../types";
 import { PostCard, PostDetails } from "../components";
 import { useApi } from "../hooks/useApi";
 import { FaPlus } from "react-icons/fa";
@@ -7,7 +7,7 @@ import { FaPlus } from "react-icons/fa";
 const CommunityPage: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(true);
+  const [isLoggedIn] = useState<boolean>(true);
   const [newPostContent, setNewPostContent] = useState<string>("");
   const [newPostImage, setNewPostImage] = useState<File | null>(null);
   const { request } = useApi();
