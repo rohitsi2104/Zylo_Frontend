@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, Method } from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { useUser } from "../store/UserContext";
 
 const api = axios.create({
@@ -10,7 +10,7 @@ const api = axios.create({
 export function useApi() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { logout } = useUser(); // Access the logout function from UserContext
 
   const authToken = localStorage.getItem("accessToken");
