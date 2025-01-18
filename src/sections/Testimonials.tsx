@@ -2,7 +2,7 @@ function Testimonials() {
   return (
     <>
       {/* Testimonial Section */}
-      {/* <section>
+      <section>
         <div className="max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
           <div className="flex items-center justify-between p-4 bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
             <h2 className="text-white font-bold text-xl">
@@ -37,7 +37,7 @@ function Testimonials() {
             </p>
           </div>
         </div>
-      </section> */}
+      </section>
     </>
   )
 }

@@ -10,6 +10,13 @@ interface InstructorData {
   description: string;
 }
 
+const getYouTubeID = (url: string): string | null => {
+  const regExp =
+    /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+  const match = url.match(regExp);
+  return match ? match[1] : null;
+};
+
 function Instructor() {
   const { request, loading, error } = useApi();
   const [instructors, setInstructors] = useState<InstructorData[] | null>(null);
@@ -28,19 +35,39 @@ function Instructor() {
     fetchInstructors();
   }, []);
 
-  const LoadableCard = Loadable(({ instructor }: { instructor: InstructorData }) => (
-    <div className="shadow-lg rounded-3xl overflow-hidden">
-      <img
-        src={instructor.image}
-        alt={`${instructor.first_name} ${instructor.last_name}`}
-        className="w-full"
-      />
-      <div className="py-5 text-center bg-white">
-        <p className="text-lg font-bold">{`${instructor.first_name} ${instructor.last_name}`}</p>
-        <p className="text-sm text-gray-600">{instructor.description}</p>
+  const LoadableCard = Loadable(
+    ({ instructor }: { instructor: InstructorData }) => (
+      <div className="shadow-lg rounded-3xl overflow-hidden relative flex flex-col">
+        <div className="relative">
+          <img
+            src={instructor.image}
+            alt={`${instructor.first_name} ${instructor.last_name}`}
+            className="w-full"
+          />
+          {instructor.video_link && (
+            <a
+              href={instructor.video_link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute bottom-2 right-2 bg-white shadow-md rounded-md p-2 hover:bg-gray-100 transition"
+            >
+              <img
+                src={`https://img.youtube.com/vi/${getYouTubeID(
+                  instructor.video_link
+                )}/hqdefault.jpg`}
+                alt="YouTube Thumbnail"
+                className="w-16 h-16 rounded-md"
+              />
+            </a>
+          )}
+        </div>
+        <div className="py-5 text-center bg-white mt-auto">
+          <p className="text-lg font-bold">{`${instructor.first_name} ${instructor.last_name}`}</p>
+          <p className="text-sm text-gray-600">{instructor.description}</p>
+        </div>
       </div>
-    </div>
-  ));
+    )
+  );
 
   if (loading || error || !instructors) {
     return null;

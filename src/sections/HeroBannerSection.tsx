@@ -10,7 +10,7 @@ function HeroBannerSection() {
     {
       "id": 2,
       "title": "HomepageBanner1",
-      "image": "src/assets/images/videobanner1.jpg",
+      "image": "src/assets/images/girl.png",
       "description": "Dancing Girl"
     }
   );
@@ -18,8 +18,10 @@ function HeroBannerSection() {
   const fetchBanner = async () => {
     const response = await request("get", "/banners/");
     if (response.data) {
-      console.log("Data:", response.data);
-      setBanner(response.data[0]);
+      console.log("Banner Api Response: ", response.data);
+      if (response.data.length > 0) {
+        setBanner(response.data[0]);
+      }response.data
     } else {
       console.log("Error:", response.error);
     }

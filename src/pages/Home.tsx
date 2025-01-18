@@ -4,6 +4,7 @@ import {
   Instructor,
   OffersCard,
   SignUp,
+  Testimonials,
 } from "../sections";
 
 
@@ -24,6 +25,8 @@ const Home = () => {
 
       {/* Our Instructors Section */}
       <Instructor />
+
+      <Testimonials />
     </div>
   );
 };
