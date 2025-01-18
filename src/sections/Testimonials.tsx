@@ -18,7 +18,6 @@ function Testimonials() {
                 alt="Before Zumba"
                 className="w-full h-full object-cover"
               />
-              <p className="text-center mt-2 text-gray-600">Before</p>
             </div>
             <div className="w-1/2 p-2">
               <img
@@ -28,12 +27,11 @@ function Testimonials() {
                 alt="After Zumba"
                 className="w-full h-full object-cover"
               />
-              <p className="text-center mt-2 text-gray-600">After</p>
             </div>
           </div>
           <div className="p-4">
             <p className="text-gray-700 text-base">
-              {"Something Good and zibrish"}
+              {"\"An exhilarating class that transformed my fitness journey into a fun, energizing, and empowering experience!\""}
             </p>
           </div>
         </div>
