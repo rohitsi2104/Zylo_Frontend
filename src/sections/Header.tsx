@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { useUser } from "../store/UserContext";
 import { FaHome, FaUsers, FaChalkboardTeacher, FaServicestack, FaUserCircle } from "react-icons/fa";
+import logo from "../assets/images/logo.png";
 
 function Header() {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ function Header() {
       <div className="container mx-auto flex justify-between items-center px-4">
         {/* Logo */}
         <img
-          src="src/assets/images/logo.png"
+          src={logo}
           alt="Logo"
           className="h-24 cursor-pointer"
           onClick={() => navigate("/")}
