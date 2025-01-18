@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { useUser } from "../store/UserContext";
 import { FaHome, FaUsers, FaChalkboardTeacher, FaServicestack, FaUserCircle } from "react-icons/fa";
-import logo from "../assets/images/logo.png";
+import logo from "/src/assets/images/logo.png";
 
 function Header() {
   const navigate = useNavigate();

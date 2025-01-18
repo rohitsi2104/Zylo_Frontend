@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useApi } from "../hooks/useApi";
 import { Loadable } from "../components";
+import videobanner1 from "/src/assets/images/videobanner1.jpg";
+import girl2 from "/src/assets/images/girl2.jpg";
 
 function HeroBannerSection() {
   const navigate = useNavigate();
@@ -65,14 +67,14 @@ function HeroBannerSection() {
           />
           <div className="absolute top-1/3 -right-14 w-[100px] h-[100px]">
             <img
-              src="src/assets/images/girl2.jpg"
+              src={girl2}
               className="rounded-full border-4 border-white object-cover w-full h-full"
               alt="girl"
             />
           </div>
           <div className="absolute top-2/3 w-[150px]">
             <img
-              src="src/assets/images/videobanner1.jpg"
+              src={videobanner1}
               alt="video banner"
               className="rounded-r-full rounded-l-full object-contain w-full"
             />

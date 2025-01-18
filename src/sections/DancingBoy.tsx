@@ -1,3 +1,8 @@
+import dancer from "/src/assets/images/dancer.png";
+import classes from "/src/assets/icons/classes.png";
+import community from "/src/assets/icons/community.png";
+import testimonial from "/src/assets/icons/testimonial.png";
+
 function DancingBoy() {
   return (
     <section className="text-center bg-blue-50 min-h-screen py-8">
@@ -6,7 +11,7 @@ function DancingBoy() {
         <div className="relative w-full md:w-1/2 flex justify-center">
           <div className="w-full max-w-md">
             <img
-              src="src/assets/images/dancer.png"
+              src={dancer}
               alt="Breakdancer"
               className="object-contain w-full h-screen"
             />
@@ -17,49 +22,54 @@ function DancingBoy() {
         <div className="space-y-16 md:w-1/2 py-2 px-16">
           {/* Card 1 */}
           <div className="flex items-start md:items-center space-x-4 bg-white relative w-full text-left px-8">
-            <div className="absolute -top-10 left-10 w-20 h-20 border-white border-[5px] rounded-full flex items-center justify-center">
-              <img src="src/assets/icons/className.png" alt="Class Icon" />
+            <div className="absolute -top-10 left-10 w-20 h-20 border-white border-[5px] rounded-full flex items-center justify-center overflow-hidden">
+              <img 
+                src={classes} 
+                alt="Class Icon"
+                className="w-full h-full object-cover" 
+              />
             </div>
             <div className="pt-12 pb-8">
               <h3 className="font-bold text-2xl md:text-3xl">Join Our Class</h3>
               <p className="text-gray-600">
-                Learn from the best dance choreographers. Sign up for our dance
-                lessons today.
+                Master your moves by learning from world-class choreographers.
+                Explore dance lessons tailored to all skill levels and styles.
               </p>
             </div>
           </div>
 
           {/* Card 2 */}
           <div className="flex items-start md:items-center space-x-4 bg-white relative w-full text-left px-8 md:ml-8">
-            <div className="absolute -top-10 left-10 w-20 h-20 border-white border-[5px] rounded-full flex items-center justify-center">
+            <div className="absolute -top-10 left-10 w-20 h-20 border-white border-[5px] rounded-full flex items-center justify-center overflow-hidden">
               <img
-                src="src/assets/icons/choreography.png"
-                alt="Choreography Icon"
+                src={community}
+                alt="Community Icon"
+                className="w-full h-full object-cover"
               />
             </div>
             <div className="pt-12 pb-8">
-              <h3 className="font-bold text-2xl md:text-3xl">
-                Community
-              </h3>
+              <h3 className="font-bold text-2xl md:text-3xl">Community</h3>
               <p className="text-gray-600">
-                Follow our dance choreography videos to learn different dance
-                styles.
+                Connect with fellow dance enthusiasts, share your passion, and
+                grow together. Join forums, events, and online meetups.
               </p>
             </div>
           </div>
 
           {/* Card 3 */}
           <div className="flex items-start md:items-center space-x-4 bg-white relative w-full text-left px-8">
-            <div className="absolute -top-10 left-10 w-20 h-20 border-white border-[5px] rounded-full flex items-center justify-center">
-              <img src="src/assets/icons/stage.png" alt="Stage Icon" />
+            <div className="absolute -top-10 left-10 w-20 h-20 border-white border-[5px] rounded-full flex items-center justify-center overflow-hidden">
+              <img 
+                src={testimonial} 
+                alt="Stage Icon" 
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="pt-12 pb-8">
-              <h3 className="font-bold text-2xl md:text-3xl">
-                Perform Onstage
-              </h3>
+              <h3 className="font-bold text-2xl md:text-3xl">Testimonials</h3>
               <p className="text-gray-600">
-                Perform onstage at our annual dance festival and gain worldwide
-                recognition.
+                Hear from our dancers about their journey, experiences, and the
+                joy of learning and performing.
               </p>
             </div>
           </div>
