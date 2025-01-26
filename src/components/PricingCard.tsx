@@ -11,7 +11,7 @@ function PricingCard({ data }: { data: OfferCardData }) {
 
   return (
     <div
-      className={`max-w-sm rounded-lg overflow-hidden shadow-xl bg-gradient-to-r ${selectedPalette} p-6 transition-transform hover:scale-105 duration-300`}
+      className={`min-w-[16rem] max-w-sm rounded-lg overflow-hidden shadow-xl bg-gradient-to-r ${selectedPalette} p-6 transition-transform hover:scale-105 duration-300`}
     >
       <div className="text-center text-xl font-extrabold tracking-wider mb-2">
         {data.title}

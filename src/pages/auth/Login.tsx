@@ -11,32 +11,43 @@ function Signin() {
   const { request, loading, error } = useApi();
   const { login } = useUser();
   const navigate = useNavigate();
+  const [formError, setFormError] = useState("");
 
   const handleLogin = async () => {
+    setFormError("");
+
+    if (!phoneNumber || !password) {
+      setFormError("Phone number and password are required.");
+      return;
+    }
+
     const formattedPhoneNumber = `${countryCode}${phoneNumber}`;
-    
-    const formData = new FormData();
-    formData.append("username", formattedPhoneNumber);
-    formData.append("password", password);
-  
-    const response = await request("post", "/login/", formData, {
-      headers: { "Content-Type": "multipart/form-data" },
+    const payload = { username: formattedPhoneNumber, password };
+
+    const response = await request("post", "/login/", payload, {
+      headers: { "Content-Type": "application/json" },
     });
-  
+
     if (response.data) {
       const { access, refresh } = response.data;
-      login({ id: "user-id", name: "User Name", phone: formattedPhoneNumber }, { access, refresh });
+      login(
+        { id: "user-id", name: "User Name", phone: formattedPhoneNumber },
+        { access, refresh }
+      );
       navigate("/");
+    } else {
+      setFormError(error || "Login failed. Please try again.");
     }
   };
-  
 
   return (
     <div className="auth-page min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-500 p-8">
       <div className="bg-white shadow-2xl rounded-lg p-8 w-full max-w-md">
-        <h1 className="text-4xl font-bold text-center mb-6 text-gray-800">Welcome Back</h1>
+        <h1 className="text-4xl font-bold text-center mb-6 text-gray-800">
+          Welcome Back
+        </h1>
         <p className="text-center text-gray-500 mb-8">Log in to your account</p>
-        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+        {formError && <p className="text-red-500 text-center mb-4">{formError}</p>}
         <div className="mb-4 flex items-center border rounded p-3 bg-white">
           <select
             value={countryCode}
@@ -48,7 +59,6 @@ function Signin() {
             <option value="+44">+44</option>
             <option value="+61">+61</option>
             <option value="+81">+81</option>
-            {/* Add more country codes as needed */}
           </select>
           <FaPhone className="text-gray-500 mr-3" />
           <input
@@ -76,6 +86,12 @@ function Signin() {
         >
           {loading ? "Logging in..." : "Log In"}
         </button>
+        <p className="text-center text-gray-500 mt-6">
+          Not a user?{" "}
+          <a href="/auth/signup" className="text-blue-500 hover:underline">
+            SignUp now
+          </a>
+        </p>
       </div>
     </div>
   );

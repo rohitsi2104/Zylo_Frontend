@@ -4,6 +4,7 @@ import { Home, Community, Classes, Services, Profile } from "../pages";
 // project imports
 import Layout from "../Layout";
 import { Navigate } from "react-router-dom";
+import { Testimonials } from "../pages";
 
 // sample page routing
 // import { lazy } from "react";
@@ -24,6 +25,10 @@ const MainRoutes = (isLoggedIn: boolean) => {
       {
         path: "community",
         element: <Community />,
+      },
+      {
+        path: "testimonials",
+        element: <Testimonials />,
       },
       ...(isLoggedIn
         ? [

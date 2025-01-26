@@ -1,6 +1,5 @@
 import axios, { AxiosRequestConfig, Method } from "axios";
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
 import { useUser } from "../store/UserContext";
 
 const api = axios.create({
@@ -10,8 +9,7 @@ const api = axios.create({
 export function useApi() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  // const navigate = useNavigate();
-  const { logout } = useUser(); // Access the logout function from UserContext
+  const { logout } = useUser();
 
   const authToken = localStorage.getItem("accessToken");
   const refreshToken = localStorage.getItem("refreshToken");
@@ -34,41 +32,44 @@ export function useApi() {
     }
 
     try {
-      let response;
-      if (method.toLowerCase() === "get") {
-        response = await api.get(url, config);
-      } else if (method.toLowerCase() === "delete") {
-        response = await api.delete(url, config);
-      } else {
-        response = await api.request({ method, url, data, ...config });
-      }
-
+      const response = await api.request({
+        method,
+        url,
+        data,
+        ...config,
+      });
       return { data: response.data, error: null };
     } catch (err: any) {
-      if (err.response && err.response.status === 401 && useAuth && refreshToken) {
+      if (err.response?.status === 401 && useAuth && refreshToken) {
         try {
           const refreshResponse = await api.post("/refresh/", { refresh: refreshToken });
           const newAccessToken = refreshResponse.data.access;
           localStorage.setItem("accessToken", newAccessToken);
 
-          // Retry the original request with the new token
           config.headers = {
             ...config.headers,
             Authorization: `Bearer ${newAccessToken}`,
           };
-          const retryResponse = await api.request({ method, url, data, ...config });
+
+          const retryResponse = await api.request({
+            method,
+            url,
+            data,
+            ...config,
+          });
           return { data: retryResponse.data, error: null };
-        } catch (refreshError: any) {
+        } catch {
           logout();
         }
-      } else if (err.response) {
-        setError(err.response.data.message || "Server error");
-      } else if (err.request) {
-        setError("No response from server");
-      } else {
-        setError("Request error");
       }
-      return { data: null, error: err.message };
+
+      if (err.response) {
+        setError(err.response.data.detail || "An error occurred");
+        return { data: null, error: err.response.data.detail || "An error occurred" };
+      }
+
+      setError(err.request ? "No response from server" : "Request error");
+      return { data: null, error: err.request ? "No response from server" : "Request error" };
     } finally {
       setLoading(false);
     }
