@@ -62,7 +62,7 @@ function Testimonials() {
   return (
     <section className="p-6">
       <h2 className="text-center text-2xl font-bold text-gray-800 mb-6">
-        Zumba Transformations
+        Zylo Transformations
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {testimonials.slice(0, 4).map((testimonial, index) => (
@@ -73,7 +73,7 @@ function Testimonials() {
             <img
               src={testimonial.imageUrl}
               alt={`Testimonial ${index + 1}`}
-              className="w-full h-56 object-cover"
+              className="w-full h-56 object-contain"
             />
           </div>
         ))}

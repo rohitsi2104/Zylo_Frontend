@@ -71,7 +71,7 @@ function TestimonialsPage() {
             <img
               src={testimonial.imageUrl}
               alt={`Testimonial ${index + 1}`}
-              className="w-full h-56 object-cover"
+              className="w-full h-56 object-contain"
             />
           </div>
         ))}
